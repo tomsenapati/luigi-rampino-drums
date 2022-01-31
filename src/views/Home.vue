@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <HomeBanner />
-    <HomeShows class="fadeIn" />
+    <!-- <HomeShows class="fadeIn" /> -->
     <HomeReleases class="fadeIn"/>
   </div>
 </template>

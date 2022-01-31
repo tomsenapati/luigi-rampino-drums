@@ -22,7 +22,7 @@
               </div>
 
               <div class="tutorContentPara" v-if="slideDisplay === 2" key="2">
-                <p>Luigi is a well established and experienced tutor, having taught drums in music schools across London for over 7 years, continuing to teach at many insitutes in the city and across the south east including:</p>
+                <p>Luigi is a well established and experienced tutor, having taught drums in music schools across London for over 7 years and continues to teach at many insitutes in the city and across the south east including:</p>
                   <h5>Windsor Music School, London, U.K.</h5>
                   <h5>Bsharp Studios, London, U.K.</h5>
                   <h5>Musically Instrumental, London, U.K.</h5>
@@ -31,10 +31,10 @@
               </div>
 
               <div class="tutorContentPara" v-if="slideDisplay === 3" key="3">
-                <h5>Drum lessons for all ages & abilities</h5>
-                <h5>7+ years of teaching experience</h5>
-                <h5>A variety of styles & influences</h5>
-                <h5 class="contactLinkTut" @click="openModal" >If you are interested in my tutoring services, please contact me here</h5>
+                <h5>DRUM LESSONS FOR ALL AGES & ABILITIES</h5>
+                <h5>7+ YEARS OF TEACHING EXPERIENCE</h5>
+                <h5>A VARIETY OF STYLES & INFLUENCES</h5>
+                <h5 class="contactLinkTut" @click="openModal" >INTERESTED IN MY TUTORING SERVICES? CONTACT ME HERE</h5>
               </div>
 
 
@@ -80,13 +80,25 @@ export default {
 
 <style>
 
+.tutorContent h3 {
+  font-size: 3.5vw;
+}
+
+h5 {
+  font-size: 1.25vw;
+}
+
+p {
+  font-size: 16px;
+}
+
 .tutorBackgroundContainer {
   display: flex;
   flex: column;
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  position: relative;
+  position: fixed;
   overflow: hidden;
 }
 
@@ -96,7 +108,7 @@ export default {
 }
 
 .tutorContentBox {
-  position: absolute;
+  position: fixed;
   z-index: 1;
   top:0; 
   background-color: var(--transparent-hover-dark);
@@ -116,7 +128,7 @@ export default {
   flex-direction: column;
   justify-content:space-around;
   height: 50vh;
-  padding: 0 5vw;
+  padding: 0 13vw;
 }
 
 .tutorContent p {
@@ -166,10 +178,26 @@ export default {
   .tutorImg {
   width: 80vw;
 }
+
+h5 {
+  font-size: 1.5vw;
+}
+
+p {
+  font-size: 14px;
+}
 }
 
 /* M TABLETS */
 @media screen and (max-width: 768px) {
+
+  h5 {
+  font-size: 1.3vw;
+}
+
+p {
+  font-size: 12px;
+}
 
   .tutorImg {
   width: 85vw;
@@ -183,10 +211,6 @@ export default {
   right: 5vw;
 }
 
-.tutorContent h3 {
-    font-size: 30px;
-  }
-
   .tutorContent {
     text-align: center;
   }
@@ -194,6 +218,10 @@ export default {
   .tutorContent p {
     text-align: center;
   }
+
+  .tutorContentPara {
+  padding: 0 5vw;
+}
 
 }
 
@@ -204,16 +232,17 @@ export default {
   width: 90vw;
 }
 
-  .tutorContent h3 {
-    font-size: 20px;
-  }
-
-  .tutorContent p {
-  font-size: 3vw;
+.tutorContentPara {
+  height: 50vh;
+  padding: 0 5vw;
 }
 
-.tutorContent h5 {
-  font-size: 3vw;
+.tutorContent h3 {
+font-size: 3.5vw;
+}
+
+h5 {
+  font-size: 2.5vw;
 }
 }
 

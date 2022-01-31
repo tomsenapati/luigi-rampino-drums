@@ -10,13 +10,15 @@
     </transition>
   </router-view>
 
-</div>
-
-  <transition appear name="modal-fade" mode="out-in">
+    <transition appear name="modal-fade" mode="out-in">
     <div v-if="isModal" >
       <SocialModal @close="displayModal"/>
     </div>
   </transition>
+
+</div>
+
+
 
 <Footer @open="displayModal"/>
   
@@ -79,5 +81,12 @@ export default {
   .modal-fade-enter-active,
   .modal-fade-leave-active {
     transition: opacity 0.3s ease;
+  }
+
+  @media screen and (max-width: 768px) {
+    .content {
+  width: 100%;
+  height: 100%;
+}
   }
 </style>

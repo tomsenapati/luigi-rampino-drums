@@ -61,6 +61,18 @@ export default {
 
 <style scoped>
 
+h3 {
+  font-size: 3.5vw;
+}
+
+h4 {
+  font-size: 2.25vw;
+}
+
+h5 {
+  font-size: 1.25vw;
+}
+
 .homeShows {
   position: relative;
   color: var(--primary-color-offwhite);
@@ -113,10 +125,30 @@ export default {
 /* L LAPTOPS */
 @media screen and (max-width: 992px) {
 
+h4 {
+  font-size: 2.75vw;
+}
+
+h5 {
+  font-size: 1.75vw;
+}
+
 }
 
 /* M TABLETS */
 @media screen and (max-width: 768px) {
+
+  h3 {
+    font-size: 8.5vw;
+  }
+
+  h4 {
+    font-size: 6vw;
+  }
+
+  h5 {
+    font-size: 3.5vw;
+  }
 
   .card {
   text-align: center;

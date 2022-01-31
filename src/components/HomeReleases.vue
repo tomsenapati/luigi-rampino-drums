@@ -29,7 +29,7 @@
         </div>
         <hr style="width:15vw; margin: auto;"/>
         <div class="seeMoreContainer">
-          <h5 class="releaseSeeMore"><router-link :to="{ name: 'allreleases' }">SEE MORE</router-link></h5> 
+          <router-link :to="{ name: 'allreleases' }"><h5 class="releaseSeeMore">SEE MORE</h5></router-link>
         </div>
     </div>
   </div>
@@ -42,6 +42,18 @@ export default {
 </script>
 
 <style scoped>
+
+h3 {
+  font-size: 3.5vw;
+}
+
+h4 {
+  font-size: 2.25vw;
+}
+
+h5 {
+  font-size: 1.25vw;
+}
 
 .CardTitle {
   margin: 0 0 100px 0;
@@ -89,7 +101,7 @@ export default {
 .releaseInfo p {
   padding: 0px 0px 0px 50px;
   margin-top: 50px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .releaseInfo2 h4 {
@@ -99,19 +111,19 @@ export default {
 .releaseInfo2 p {
   padding: 0px 50px 0px 0px;
   margin-top: 50px;
-  font-size: 16px;
-}
-
-.releaseSeeMore {
-  z-index: 2;
-  margin: 30px;
-  transition: 0.3s;
-  color: var(--primary-color-offwhite);
+  font-size: 14px;
 }
 
 .releaseSeeMore:hover {
   color: var(--transparent-hover-light);
   cursor: pointer;
+}
+
+.releaseSeeMore {
+  z-index: 3;
+  margin: 30px;
+  transition: 0.3s;
+  color: var(--primary-color-offwhite);
 }
 
 .seeMoreContainer { 
@@ -162,7 +174,7 @@ export default {
   width: 90vw;
   margin-bottom: 50px;
   padding: 0;
-  margin-left: -3vw;
+  margin-left: -1vw;
 }
 
 .releaseInfo2 {
@@ -173,7 +185,7 @@ export default {
   width: 90vw;
   margin-bottom: 50px;
   padding: 0;
-  margin-left: 3vw;
+  margin-left: 1vw;
 }
 
 .releaseMedia {
@@ -196,7 +208,6 @@ export default {
   margin: 0 15vw;
   padding: 0;
   margin-top: 50px;
-  font-size: 16px;
 }
 
 .releaseInfo2 h4 {
@@ -234,6 +245,18 @@ export default {
 
 /* M TABLETS */
 @media screen and (max-width: 768px) {
+
+  h3 {
+    font-size: 8.5vw;
+  }
+
+  h4 {
+    font-size: 6vw;
+  }
+
+  h5 {
+    font-size: 3.5vw;
+  }
 
 }
 

@@ -49,6 +49,8 @@
     }
 </script>
 <style scoped>
+
+
    .hidden {
         visibility: hidden;
     }
@@ -187,7 +189,9 @@
 
 /* L LAPTOPS */
 @media screen and (max-width: 992px) {
-
+    .sidebar-panel {
+        width: 25vw;
+    }
 }
 
 /* M TABLETS */

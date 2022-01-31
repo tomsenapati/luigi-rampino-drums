@@ -23,7 +23,12 @@ br {
   color: var(--primary-color-offwhite);
 }
 
-h3 {
+a {
+  text-decoration: none;
+  color: var(--primary-color-offwhite);
+}
+
+/* h3 {
   font-size: 3.5vw;
 }
 
@@ -39,11 +44,6 @@ p {
   font-size: 16px;
 }
 
-a {
-  text-decoration: none;
-  color: var(--primary-color-offwhite);
-}
-
 @media screen and (max-width: 768px) {
   h3 {
     font-size: 8.5vw;
@@ -56,4 +56,4 @@ a {
   h5 {
     font-size: 3.5vw;
   }
-}
+} */

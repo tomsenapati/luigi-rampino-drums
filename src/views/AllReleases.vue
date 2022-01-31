@@ -95,6 +95,19 @@ export default {
 </script>
 
 <style scoped>
+
+h4 {
+  font-size: 2.25vw;
+}
+
+h5 {
+  font-size: 1.25vw;
+}
+
+p {
+  font-size: 16px;
+}
+
 .allReleases {
   width:100vw;
   color: var(--primary-color-offwhite);

@@ -6,7 +6,6 @@
 </video>
 <img class="heroImg heroImgImg" src="../assets/images/staticHome.jpg" alt="">
 <img class="heroImgGrad" src="../assets/images/gradientoverlay.png" alt="">
-<img class="heroImgGrad2" src="../assets/images/gradientoverlay2.png" alt="">
   </div>
     <div class="titleCard">
       <div class="titleBox"></div>
@@ -44,15 +43,6 @@ export default {
 }
 
 .heroImgGrad {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  height: auto;
-  width: 70.5vw;
-}
-
-.heroImgGrad2 {
-  display: none;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -128,13 +118,14 @@ export default {
 }
 
 /* L LAPTOPS */
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 913px) {
   .heroImg {
     width: 63vw;
   }
 
    .heroImgGrad {
   width: 63.5vw;
+  display: none;
 }
 
   .header {
@@ -160,6 +151,9 @@ export default {
 
 .heroImgImg {
   display: block;
+  width: 100vw;
+  height: auto;
+  left: 40px;
 }
   
 }
@@ -173,6 +167,12 @@ export default {
   }
 
    .heroImgGrad {
+  width: auto;
+    height: 50.5vh;
+    right: auto;
+}
+
+.heroImgImg {
   width: auto;
     height: 50.5vh;
     right: auto;
@@ -204,13 +204,6 @@ export default {
 
   .heroImgGrad {
     display: none;
-}
-
-.heroImgGrad2 {
-  width: auto;
-    height: 50.5vh;
-    right: auto;
-  display: block;
 }
 
   .header {

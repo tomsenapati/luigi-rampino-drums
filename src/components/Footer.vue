@@ -32,6 +32,9 @@ export default {
   width: 100%;
   color: var(--transparent-hover-light);
   background-color: transparent;
+  height:10px;
+  width: 10px;
+  right: 0;
 }
 
 .socials {
