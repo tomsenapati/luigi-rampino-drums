@@ -1,16 +1,19 @@
 <template>
 
+<div class="overlay"></div>
+
 <Navbar />
 
 <div class="content">
 
+
   <router-view v-slot="{ Component }"> 
-    <transition name="route" mode="out-in" appear>
+    <transition name="route" mode="out-in">
       <component :is="Component" @open="displayModal"></component>
     </transition>
   </router-view>
 
-    <transition appear name="modal-fade" mode="out-in">
+    <transition name="modal-fade" mode="out-in">
     <div v-if="isModal" >
       <SocialModal @close="displayModal"/>
     </div>
@@ -48,6 +51,16 @@ export default {
 </script>
 
 <style>
+
+.overlay {
+  position: absolute;
+  z-index: 20;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(./assets/images/45-degree-fabric-dark.png);
+  opacity: 0.5;
+  pointer-events: none;
+}
 
 .content {
   max-width: 1200px;

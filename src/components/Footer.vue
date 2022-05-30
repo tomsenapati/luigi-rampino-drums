@@ -26,7 +26,7 @@ export default {
   padding: 1px;
   position: fixed;
   bottom: 0px;
-  z-index: 1;
+  z-index: 20;
   background-color: black;
   height: 84px;
   width: 100%;

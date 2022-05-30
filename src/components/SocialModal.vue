@@ -5,19 +5,19 @@
         <a :href="'//'+ 'www.instagram.com/luigi_rampino/'" target="_blank">
       <div class="iconCard">
         <i class="fab fa-instagram iconModal"></i>
-        <h4>www.instagram.com/luigi_rampino</h4>
+        <h5>@luigi_rampino</h5>
       </div>
       </a>
       <a :href="'//'+ 'www.facebook.com/lui.rampino'" target="_blank">
       <div class="iconCard">
         <i class="fab fa-facebook-square iconModal"></i>
-        <h4>www.facebook.com/lui.rampino</h4>
+        <h5>/lui.rampino</h5>
       </div>
       </a>
       <a :href="'//'+ 'mailto:luirampinodrums@gmail.com'" target="_blank">
       <div class="iconCard">
         <i class="far fa-envelope iconModal"></i>
-        <h4>luirampinodrums@gmail.com</h4>
+        <h5>luirampinodrums@gmail.com</h5>
       </div>
       </a>
       </div>
@@ -69,7 +69,7 @@ export default {
   .iconCard {
     display: flex;
     color: var(--primary-color-offwhite);
-    width: 42vw;
+    width: 100%;
     height: 14vh;
     justify-content:space-between;
     transition: 0.3s;
@@ -79,9 +79,8 @@ export default {
     padding: 3vh;
   }
 
-  .iconCard h4 {
+  .iconCard h5 {
     margin: auto 3vw;
-    font-size: 2.5vh;
   }
 
   .iconCard:hover {
@@ -101,6 +100,14 @@ export default {
 /* L LAPTOPS */
 @media screen and (max-width: 992px) {
 
+  .modal {
+    width: 55vw;
+  }
+
+  .iconCard {
+    width: 55vw;
+  }
+
 }
 
 /* M TABLETS */
@@ -110,11 +117,11 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
   }
 
-  .iconCard h4 {
-    font-size: 2.5vw;
-    margin: -20px auto auto auto;
+  .iconCard h5 {
+    margin: auto auto 3vh auto;
   }
 
   .iconCard i {

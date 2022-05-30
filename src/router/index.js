@@ -4,7 +4,34 @@ import Drummer from '../views/Drummer.vue'
 import Tutor from '../views/Tutor.vue'
 import AllReleases from '../views/AllReleases.vue'
 import AllShows from '../views/AllShows.vue'
+import Admin from '../views/Admin.vue'
+import Login from '../views/Login.vue'
+import { auth } from '../firebase/config'
+
+const preAuth = (to, from, next) => {
+  let user = auth.currentUser
+  if (user) {
+    next({name: 'admin'})
+  } else {
+    next()
+  }
+}
+
+const requireAuth = (to, from, next) => {
+  let user = auth.currentUser
+  if (!user) {
+    next({name: 'login'})
+  } else {
+    next()
+  }
+}
+
 const routes = [
+  { 
+    path: '/:catchAll(.*)',
+    name: 'redirect',
+    component: Home
+  },
   {
     path: '/',
     name: 'home',
@@ -29,7 +56,19 @@ const routes = [
     path: '/shows',
     name: 'allshows',
     component: AllShows
-  }
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: Admin,
+    beforeEnter: requireAuth
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
+    beforeEnter: preAuth
+  },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

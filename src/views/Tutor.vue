@@ -5,167 +5,246 @@
       <img class="tutorImg" src="../assets/images/tutor.jpg">
     </div>
 
+    <div class="lessonsFlex">
+      <div class="lessonsTitleCard">
+        <h1 class="lessonsTitle">DRUM LESSONS</h1>
+        <h2 class="lessonsSubtitle">AVAILABLE NOW</h2>
+      </div>
+      <div class="lessonsRowBox">
 
-        <i @click="slideDisplayDecrement" class="chevron fas fa-chevron-left"></i>
-        <i @click="slideDisplayIncrement" class="chevron fas fa-chevron-right"></i>
-
-
-          <div  class="tutorContentBox">
-            <div class="tutorContent">
-
-              <h3>DRUM LESSONS</h3>
-              <h5>AVAILABLE NOW</h5>
-                <div  class="tutorContentPara" v-if="slideDisplay === 1" key="1">
-                <p>Detailed and customised programmes intended for students to explore all possibilities in the music industry and acquire drumming skills needed in order to progress</p>
-                <p>Lessons  based around learning and experiencing core drumming concepts, including drumming rudiments, limb independence, counting/timing & techniques</p>
-                <p>A unique approach to teaching from a background in Progressive Rock, but with the ability to span many different styles like Rock, Pop, Funk, Jazz & Blues</p>
-              </div>
-
-              <div class="tutorContentPara" v-if="slideDisplay === 2" key="2">
-                <p>Luigi is a well established and experienced tutor, having taught drums in music schools across London for over 7 years and continues to teach at many insitutes in the city and across the south east including:</p>
-                  <h5>Windsor Music School, London, U.K.</h5>
-                  <h5>Bsharp Studios, London, U.K.</h5>
-                  <h5>Musically Instrumental, London, U.K.</h5>
-                  <h5>Young Harmonisers Music School, Grays, U.K.</h5>
-                  <h5>Canada Estate Drumming Club, London, U.K</h5>
-              </div>
-
-              <div class="tutorContentPara" v-if="slideDisplay === 3" key="3">
-                <h5>DRUM LESSONS FOR ALL AGES & ABILITIES</h5>
-                <h5>7+ YEARS OF TEACHING EXPERIENCE</h5>
-                <h5>A VARIETY OF STYLES & INFLUENCES</h5>
-                <h5 class="contactLinkTut" @click="openModal" >INTERESTED IN MY TUTORING SERVICES? CONTACT ME HERE</h5>
-              </div>
-
-
-            </div>
+        <div class="lessonsRow1">
+          <div class="tutorContentPara headerPara">
+                <h5 class="bullet">FOR ALL AGES & ABILITIES</h5>
+                <h5 class="bullet">A VARIETY OF STYLES & INFLUENCES</h5>
+                <h5 class="bullet">7+ YEARS OF TEACHING EXPERIENCE</h5>
+                <div class="clickBorder" @click="openModal" > <h5 class="contactLinkTut bullet"  >CONTACT ME</h5> </div>
           </div>
+        </div>
+        
+          <div class="arrow bounce">
+            <a href="#scroll">
+              <span class="fa fa-arrow-down fa-2x"></span>
+            </a>
+          </div>
+        
+         
+
+
+        <div class="lessonsRow2">
+
+
+          <div  class="tutorContentParaBottom" id="scroll">
+                <h4 class="lessonsSubtitle" > WHAT CAN YOU EXPECT?</h4>
+                <p class="text" >Detailed & customised programmes intended for students to explore all possibilities in the music industry and acquire the drumming skills needed in order to progress.</p>
+                <p class="text" >A lesson programme based around learning and experiencing core drumming concepts:</p>
+                <h5 class="bullet">drumming rudiments</h5>
+                <h5 class="bullet">limb independence</h5>
+                <h5 class="bullet">counting / timing</h5>
+                <h5 class="bullet">drumming techniques</h5>
+                <p  class="text" >A unique approach to teaching from a background in Progressive Rock, but with the ability to span many different styles like Rock, Pop, Funk, Jazz & Blues.</p>
+              </div>
+
+
+          <div class="tutorContentParaBottom">
+            <h4 class="lessonsSubtitle" > WHO AM I?</h4>
+                <p class="text" >Luigi is a well established and experienced tutor, having taught drums in music schools across London for over 7 years and continues to teach at many insitutes in the city and across the south east, including:</p>
+                  <h5 class="bullet">Windsor Music School, London</h5>
+                  <h5 class="bullet">Bsharp Studios, London</h5>
+                  <h5 class="bullet">Musically Instrumental, London</h5>
+                  <h5 class="bullet">Young Harmonisers Music School, Grays</h5>
+                  <h5 class="bullet">Canada Estate Drumming Club, London</h5>
+              </div>
+        </div>
+      </div>
+    </div>
         
 
 
   </div>
 </template>
 
-<script scoped>
+<script>
+import gsap from 'gsap'
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
 export default {
-  data() {
-    return {
-      slideDisplay: 1
-    }
+  mounted: () => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    const tl = gsap.timeline()
+
+    ScrollTrigger
+    .create({
+      id: "tutorScroll",
+      animation: tl,
+      trigger: ".arrow",
+      start: "top center",
+      end: "+=350",
+      scrub: true
+    })
+
+     tl
+     .from('.tutorContentParaBottom', {opacity:0})
+     .to('.arrow', {opacity:0}, 0)
+
+  },
+    beforeDestroy() {
+	  ScrollTrigger.getById("tutorScroll").disable()
   },
   methods: {
-    slideDisplayIncrement() {
-      if (this.slideDisplay < 3) {
-        this.slideDisplay = this.slideDisplay + 1;
-      }
-      else {
-        this.slideDisplay = 1;
-      }
-    },
-
-    slideDisplayDecrement() {
-      if (this.slideDisplay > 1) {
-        this.slideDisplay = this.slideDisplay - 1;
-      }
-      else {
-        this.slideDisplay = 3;
-      }
-    },
     openModal() {
-    this.$emit('open')
+      this.$emit('open')
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 
-.tutorContent h3 {
-  font-size: 3.5vw;
+.arrow {
+  text-align: center;
 }
 
-h5 {
-  font-size: 1.25vw;
+.fa {
+  margin: 5% 0;
+  opacity: 100;
+  color: var(--transparent-hover-light);
+  transition: 0.6s;
 }
 
-p {
-  font-size: 16px;
+.fa:hover {
+  color: var(--primary-color-offwhite);
+}
+
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.tutor {
+  width: 100vw;
 }
 
 .tutorBackgroundContainer {
+  position: fixed;
   display: flex;
   flex: column;
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  position: fixed;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .tutorImg {
+  position: fixed;
   width: 75vw;
   margin: auto;
 }
 
-.tutorContentBox {
-  position: fixed;
-  z-index: 1;
-  top:0; 
-  background-color: var(--transparent-hover-dark);
-  width: 64vw;
-  height: 64vh;
-  margin: 18vh 18vw;
+.lessonsFlex {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--primary-color-offwhite);
 }
 
-.tutorContent {
+.lessonsTitleCard {
+  margin: 5vh auto;
+  padding: 10px 20px;
+  align-content: center;
+  text-shadow: 3px 3px 3px var(--transparent-hover-dark);
+}
+
+.lessonsTitle {
+text-align: center;
+}
+
+.lessonsSubtitle {
+  text-align: center;
+
+}
+
+.lessonsRowBox {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-content: center;
+}
+
+.lessonsRow1 {
   padding: 20px;
   text-align: center;
-  color: var(--primary-color-offwhite);
+
+}
+
+.lessonsRow2 {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
 }
 
 .tutorContentPara {
-  display: flex;
-  flex-direction: column;
-  justify-content:space-around;
-  height: 50vh;
-  padding: 0 13vw;
+  margin: auto;
+  padding: 20px;
+  background-color: var(--transparent-hover-dark);
 }
 
-.tutorContent p {
-  text-align: left;
+.tutorContentParaBottom {
+  margin: 100px 20px;
+  width: 40vw;
+  padding: 20px;
+  background-color: var(--transparent-hover-dark);
 }
 
-.chevron {
-  position: fixed;
-  top:0;
-  z-index: 0;
-  color: var(--transparent-hover-light);
-  font-size: 10vh;
-  margin-top: 43vh;
-  transition: 0.3s;
+.headerPara {
+  width: 30vw;
 }
 
-.chevron:hover {
-  color: var(--primary-color-offwhite);
+.bullet {
+  padding: 20px;
+  text-transform: uppercase;
 }
 
-.fa-chevron-left {
-  left: 10vw;
-}
-
-.fa-chevron-right {
-  right: 10vw;
+.text {
+  padding: 20px 50px;
 }
 
 .contactLinkTut {
-  background-color: transparent;
-  color: var(--primary-color-offwhite);
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .contactLinkTut:hover {
   color: var(--transparent-hover-light);
   cursor: pointer;
+}
+
+.clickBorder {
+  width: 50%;
+  margin: 10px auto;
+  border: var(--primary-color-offwhite) solid;
+  transition: 0.6s;
+}
+
+.clickBorder:hover {
+  background-color: var(--primary-color-offwhite)
 }
 
 /* XL SCREENS */
@@ -175,52 +254,62 @@ p {
 
 /* L LAPTOPS */
 @media screen and (max-width: 992px) {
+
+  .arrow {
+  margin: 15% 0;
+}
+
   .tutorImg {
-  width: 80vw;
+  width: 100vw;
+  padding-top: 10vh;
 }
 
-h5 {
-  font-size: 1.5vw;
+.clickBorder {
+  width: 60%;
 }
 
-p {
-  font-size: 14px;
+.headerPara {
+  width: 50vw;
 }
+
+
+
+
 }
 
 /* M TABLETS */
 @media screen and (max-width: 768px) {
 
-  h5 {
-  font-size: 1.3vw;
+  .arrow {
+  margin: 20% 0;
 }
 
-p {
-  font-size: 12px;
+    .tutorImg {
+      padding-top: 15vh;
+    }
+
+
+.clickBorder {
+  width: 85%;
 }
 
-  .tutorImg {
-  width: 85vw;
+.headerPara {
+  width: 60vw;
 }
 
-  .fa-chevron-left {
-  left: 5vw;
+.lessonsRow2 {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
 }
 
-.fa-chevron-right {
-  right: 5vw;
-}
-
-  .tutorContent {
-    text-align: center;
-  }
-
-  .tutorContent p {
-    text-align: center;
-  }
-
-  .tutorContentPara {
-  padding: 0 5vw;
+.tutorContentParaBottom {
+  margin: 50px auto;
+  width: 90vw;
+  padding: 20px;
+  background-color: var(--transparent-hover-dark);
 }
 
 }
@@ -228,21 +317,17 @@ p {
 /* S PHONES */
 @media screen and (max-width: 576px) {
 
+  .arrow {
+  margin: 30% 0;
+}
+
   .tutorImg {
-  width: 90vw;
+    width: 150vw;
+    padding-top: 20vh;
 }
 
-.tutorContentPara {
-  height: 50vh;
-  padding: 0 5vw;
-}
-
-.tutorContent h3 {
-font-size: 3.5vw;
-}
-
-h5 {
-  font-size: 2.5vw;
+.clickBorder {
+  width: 95%;
 }
 }
 

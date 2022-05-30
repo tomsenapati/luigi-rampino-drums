@@ -16,20 +16,23 @@
             <div v-if="isBurgerActive"
                  class="sidebar-panel">
                 <div class="sidebarNavigation">
+                <router-link v-if="user" :to="{ name: 'admin' }" @click.prevent="toggle">
+                  <h4 class="admin" >ADMIN PAGE</h4>
+                  </router-link>
                   <router-link :to="{ name: 'portfolio' }" @click.prevent="toggle">
-                  <h1>PORTFOLIO</h1>
+                  <h4>PORTFOLIO</h4>
                   </router-link>
                   <router-link :to="{ name: 'tutor' }"
                   @click.prevent="toggle">
-                  <h1>DRUM LESSONS</h1>
+                  <h4>LESSONS</h4>
                   </router-link>
                   <router-link :to="{ name: 'allshows' }"
                   @click.prevent="toggle">
-                  <h1>SHOWS</h1>
+                  <h4>SHOWS</h4>
                   </router-link>
                   <router-link :to="{ name: 'allreleases' }"
                   @click.prevent="toggle">
-                  <h1>PROJECTS</h1>
+                  <h4>PROJECTS</h4>
                   </router-link>
                 </div>
             </div>
@@ -37,7 +40,16 @@
     </div>
 </template>
 <script>
+import getUser from '../composables/getUser'
+
     export default {
+        setup() {
+
+            const { user } = getUser()
+
+            return { user }
+        },
+
         data: () => ({
             isBurgerActive: false
         }),
@@ -177,9 +189,14 @@
       font-size: 12px;
     }
 
-    .sidebarNavigation h1:hover {
+    .sidebarNavigation h4:hover {
       color: var(--transparent-hover-light);
       transition: 0.4s;
+    }
+
+    .admin {
+        color: red;
+        transition: 0.6s;
     }
 
     /* XL SCREENS */

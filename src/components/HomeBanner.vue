@@ -4,7 +4,7 @@
     <video class="heroImg heroImgVid" autoplay muted loop id="myVideo">
   <source src="../assets/images/LuigiWebsiteSizzle.mp4" type="video/mp4">
 </video>
-<img class="heroImg heroImgImg" src="../assets/images/staticHome.jpg" alt="">
+<img class="heroImgImg" src="../assets/images/staticHome.jpg" alt="">
 <img class="heroImgGrad" src="../assets/images/gradientoverlay.png" alt="">
   </div>
     <div class="titleCard">
@@ -25,6 +25,10 @@ export default {
 
 <style scoped>
 
+.homeBanner {
+  width: 100vw;
+}
+
   .backgroundContainer {
   position: sticky;
   top: 0;
@@ -32,6 +36,7 @@ export default {
   height: 100%;
   width: 100%;
   background-color: black;
+  pointer-events: none;
 }
 
 .heroImg {
@@ -70,6 +75,7 @@ export default {
   position: absolute;
   top: 420px;
   margin: 0 1px;
+  padding: 10px 0px;
   color: var(--transparent-hover-light);
   font-size: 56px;
 }
@@ -118,28 +124,34 @@ export default {
 }
 
 /* L LAPTOPS */
-@media screen and (max-width: 913px) {
-  .heroImg {
-    width: 63vw;
-  }
+@media screen and (max-width: 992px) {
+
+  .heroImgImg {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: auto;
+
+  width: 70vw;
+}
 
    .heroImgGrad {
-  width: 63.5vw;
   display: none;
 }
 
   .header {
-    font-size:65px;
+    font-size:10vw;
   }
   .header2 {
-     top: -25px; 
+     top: -35px; 
   }
   .subHeader {
-    font-size:34px;
-    top: 360px;
+    font-size:5.5vw;
+    top: 405px;
   }
   .subHeader a {
-    font-size: 33px;
+    font-size: 5.5vw;
   }
   .titleCard {
   padding: 250px 140px;
@@ -149,51 +161,40 @@ export default {
   display: none;
 }
 
-.heroImgImg {
-  display: block;
-  width: 100vw;
-  height: auto;
-  left: 40px;
-}
   
 }
 
 /* M TABLETS */
 @media screen and (max-width: 768px) {
-  .heroImg {
-    width: auto;
-    height: 50vh;
-    right: auto;
-  }
 
-   .heroImgGrad {
-  width: auto;
-    height: 50.5vh;
-    right: auto;
+.homeBanner {
+  width: 100vw;
 }
 
 .heroImgImg {
-  width: auto;
-    height: 50.5vh;
-    right: auto;
+width: 80vw;
 }
 
   .header {
     font-size: 15vw;
   }
+
   .header2 {
     top: -6vw;
   }
+
   .subHeader {
     font-size:10vw;
-    top: 59vh;
+    top: 60vh;
   }
+
   .subHeader a {
     font-size: 9vw;
   }
+
   .titleCard {
   padding: 40vh 10vw;
-  height: 320px;
+  height: 200px;
 }
 
   
@@ -202,8 +203,8 @@ export default {
 /* S PHONES */
 @media screen and (max-width: 576px) {
 
-  .heroImgGrad {
-    display: none;
+  .heroImgImg {
+width: 100vw;
 }
 
   .header {
@@ -214,14 +215,24 @@ export default {
   }
   .subHeader {
     font-size:10vw;
-    top: 54vh;
+    top: 56vh;
   }
   .subHeader a {
     font-size: 10vw;
   }
   .titleCard {
   padding: 40vh 8vw;
-  top: 0;
-}  
+  height: 100px;
+} 
+}
+
+/* XS */
+
+@media screen and (max-width: 420px) {
+
+  .subHeader {
+    top: 52vh;
+  }
+ 
 }
 </style>

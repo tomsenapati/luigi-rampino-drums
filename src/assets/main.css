@@ -17,6 +17,41 @@ body {
   max-width: 100%;
   overflow-x: hidden;
   background-color: black;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: 9vw;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 4vw;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 3.5vw;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-size: 1.75vw;
+  text-transform: uppercase;
+}
+
+h5 {
+  font-size: 1.25vw;
+  text-transform: uppercase;
+}
+
+h6 {
+  font-size: 0.75vw;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 1.25vw;
 }
 
 br {
@@ -28,32 +63,86 @@ a {
   color: var(--primary-color-offwhite);
 }
 
-/* h3 {
-  font-size: 3.5vw;
+input {
+  color: var(--primary-color-offwhite);
+  background-color: var(--transparent-hover-light);
+  border: var(--primary-color-offwhite) solid;
 }
 
-h4 {
-  font-size: 2.25vw;
+button {
+  text-align: center;
+  border: var(--primary-color-offwhite) solid;
+  transition: 0.6s;
+  color: var(--primary-color-offwhite);
+  background-color: black;
 }
 
-h5 {
-  font-size: 1.25vw;
+button:hover {
+  background-color: var(--primary-color-offwhite);
+  color: var(--transparent-hover-light);
+  cursor: pointer;
 }
 
-p {
-  font-size: 16px;
-}
+/* L TABLETS */
+@media screen and (max-width: 992px) {
+  h1 {
+    font-size: 11vw;
+  }
 
-@media screen and (max-width: 768px) {
+  h2 {
+    font-size: 4vw;
+  }
+
   h3 {
-    font-size: 8.5vw;
+    font-size: 4.5vw;
   }
 
   h4 {
-    font-size: 6vw;
+    font-size: 2.5vw;
   }
 
   h5 {
-    font-size: 3.5vw;
+    font-size: 2vw;
   }
-} */
+
+  h6 {
+    font-size: 1.1vw;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 2vw;
+  }
+}
+
+/* M SMALL TABLETS */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 15vw;
+  }
+
+  h3 {
+    font-size: 7.5vw;
+  }
+
+  h4 {
+    font-size: 5vw;
+  }
+
+  h5 {
+    font-size: 3vw;
+  }
+
+  h6 {
+    font-size: 2vw;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 3vw;
+  }
+}
+
+/* S PHONES */
+@media screen and (max-width: 576px) {
+}

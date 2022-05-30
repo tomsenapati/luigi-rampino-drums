@@ -7,6 +7,10 @@
         <h1 class="navSpacer">RAMPINO</h1>
       </div>
     </router-link>
+    <div class="admin" v-if="user">
+      <h4>ADMIN MODE</h4>
+      <button @click="handleClick">LOGOUT</button>
+    </div>
     <div class="burgerIcon">
       <Burger></Burger>
     </div>
@@ -15,9 +19,27 @@
 </template>
 
 <script>
-import Burger from './Burger.vue';
+
+import getUser from '../composables/getUser'
+
+import Burger from './Burger.vue'
+
+import { auth } from '../firebase/config'
+import { signOut } from 'firebase/auth'
 
 export default {
+  setup() {
+
+    const { user } = getUser()
+
+    const handleClick = () => {
+
+      signOut(auth)
+
+    }
+
+    return { handleClick, user }
+  },
  name: 'app',
  components: {
    Burger
@@ -27,11 +49,12 @@ export default {
 
 <style scoped>
 .navbar {
-  z-index: 10;
+  z-index: 20;
   width: 100vw;
   background-color: transparent;
   position: fixed;
   padding: 1vh 2vh;
+  pointer-events: none;
 }
 
 .navbarItems {
@@ -44,6 +67,7 @@ export default {
   left: 20px;
   color: var(--transparent-hover-light);
   transition: 0.3s;
+  pointer-events: auto;
 }
 
 .burgerIcon {
@@ -63,6 +87,41 @@ export default {
   position: absolute;
   margin-top: -6px;
   background-color: transparent;
+}
+
+.admin {
+  position: absolute;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  pointer-events:none;
+}
+
+.admin h4 {
+  margin: auto;
+  color: red;
+}
+
+.admin button {
+  margin: 10px auto;
+  padding: 5px;
+  text-align: center;
+  background-color: black;
+  color: var(--primary-color-offwhite);
+  border: var(--primary-color-offwhite) solid;
+  transition: 0.6s;
+  pointer-events: auto;
+}
+
+.admin button:hover {
+  background-color: var(--primary-color-offwhite);
+  color: var(--transparent-hover-light);
+  cursor: pointer;
+}
+
+.burgerIcon {
+top: 0;
+pointer-events: auto;
 }
 
   /* XL SCREENS */

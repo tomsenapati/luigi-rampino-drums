@@ -1,13 +1,24 @@
 <template>
-<div class="drummerBanner">
+<div class="drummer">
+
+  <div class="drummerBanner">
     <img class="drummerImg" src="../assets/images/PortfolioWhole.jpg">
     <div class="drummerContent">
       <img 
       class="drummerBackgroundScroll" src="../assets/images/PortfolioCrowd.png">
       <div class="drummerBlack">
+
+        
+          <div class="arrow bounce">
+            <a href="#scroll">
+              <span class="fa fa-arrow-down fa-2x"></span>
+            </a>
+          </div>
+        
+
         <div class="fadeDrummer">
           <div class="drummerTitleCard">
-            <h1 class="drummerHeader">PORTFOLIO</h1>
+            <h1 class="drummerHeader" id="scroll">PORTFOLIO</h1>
           </div>
           <div class="drummerBio">
             <div class="drummerBioRow">
@@ -23,8 +34,10 @@
 
             <p>Luigi has collaborated with a large variety of artists in the U.K. and across Europe, recently being busy touring and recording with artists such as Black Market Aftermath, Transatlantic Family Band, Ben Hemming and many more. Additionally he has been recording for other projects thanks to his vast fluency in many different styles. </p>
             <p>During his performing career so far, he has had the pleasure to record in various renowned studios across the U.K. and Europe. He has performed in Konk Studios (London), Miloco Studio/The Pool (London), The Blue Studios (London), Velvet Recordings (Oslo, Norway) & Masterlink Productions (U.K.)</p>
-            <h5 class="contactLink" @click="openModal">INTERESTED IN WORKING TOGETHER? CONTACT ME HERE</h5>
-            <h5 class="contactLinkSM" @click="openModal">CONTACT ME</h5>
+            <h5>INTERESTED IN WORKING TOGETHER?</h5>
+            <div class="clickBorder contactLinkSM" @click="openModal">
+              <h5>CONTACT ME</h5>
+            </div>
           </div>
         </div>
       </div>
@@ -32,11 +45,14 @@
       <div class="panelsSection">
         <div class="panels">
           <div class="panel" v-for="artist in artists" :key="artist.id">
-            <a :href="'//'+ artist.Link" target="_blank">
-            <div class="panelTitleBanner">
-              <h3>{{artist.Name}}</h3>
+            <div class="panelGradient"></div>
+            <div class="subPanel" :style="{ 'background-image': 'url(' + artist.Banner +')'}">
+              <a :href="'//'+ artist.Link" target="_blank">
+                <div class="panelTitleBanner">
+                  <h3>{{artist.Name}}</h3>
+                </div>
+              </a>
             </div>
-          </a>
           </div>
         </div>
       </div>
@@ -45,7 +61,7 @@
         <div class="mobileProject" v-for="artist in artists" :key="artist.id">
           <a :href="'//'+ artist.Link" target="_blank">
           <div class="project">
-          <img class="projectImg" src="../assets/images/Panelimages/transatlantic.jpg">
+          <img class="projectImg" :src="artist.Banner">
           <h3 class="projectTitle">{{artist.Name}}</h3>
           </div>
           </a>
@@ -53,48 +69,49 @@
       </div>
     </div>
   </div>
+
+</div>
 </template>
 
 <script>
 import gsap from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { ref } from  'vue'
-
-//firebase imports
-import { db } from '../firebase/config'
-import { collection, getDocs } from 'firebase/firestore'
+import getCollection from '@/composables/getCollection'
 
 export default {
+
   setup() {
-    const artists = ref([])
 
-    const colRef = collection(db, 'Artists')
-
-    getDocs(colRef)
-    .then(snapshot => {
-      let docs = []
-      snapshot.docs.forEach(doc => {
-        docs.push({...doc.data(), id: doc.id})
-      })
-      artists.value = docs
-      console.log (artists.value)
-    })
-
+    const { documents: artists } = getCollection(
+    'Artists',
+    'orderBy',
+    ["Name"])
+    
     return { artists }
+
   },
   mounted: () => {
     gsap.registerPlugin(ScrollTrigger)
 
     const tl = gsap.timeline()
-    tl.from('.fadeDrummer', {opacity:0})
-
-    ScrollTrigger.create({
+    
+    ScrollTrigger
+    .create({
+      id: "drummerScroll",
       animation: tl,
-      trigger: ".fadeDrummer",
+      trigger: ".arrow",
       start: "top center",
       end: "+=450",
       scrub: true
     })
+
+    tl
+    .from('.fadeDrummer', {opacity:0})
+    .to('.arrow', {opacity: 0})
+
+  },
+    beforeDestroy() {
+	  ScrollTrigger.getById("drummerScroll").disable()
   },
   methods: {
     openModal() {
@@ -106,24 +123,44 @@ export default {
 
 <style scoped>
 
-h3 {
-  font-size: 4.1vw;
+
+.arrow {
+  text-align: center;
+  opacity: 1;
 }
 
-h4 {
-  font-size: 2.25vw;
+.fa {
+  color: var(--transparent-hover-light);
+  transition: 0.6s;
 }
 
-h5 {
-  font-size: 1.25vw;
+.fa:hover {
+  color: var(--primary-color-offwhite);
 }
 
-p {
-  font-size: 16px;
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.fadeDrummer {
+opacity: 1;
 }
 
 .drummerHeader {
-  font-size: 9vw;
   color: var(--primary-color-offwhite);
   width:90vw;
 }
@@ -132,6 +169,7 @@ p {
   width: 100vw;
   position: fixed;
   z-index: 0;
+  pointer-events: none;
 }
 
 .descImg {
@@ -162,7 +200,7 @@ p {
   color: var(--primary-color-offwhite);
   width: 100vw;
   text-align: center;
-  padding: 0 5vw;
+  padding: 5vw 5vw 0 5vw;
 }
 
 
@@ -197,11 +235,6 @@ p {
   font-size: 24px;
 }
 
-
-.contactLinkSM {
-  display: none;
-}
-
 .panelsSection {
   margin: 0;
   padding: 0;
@@ -222,7 +255,7 @@ p {
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
-  transition: 1s;
+  transition: 2s;
   opacity: 0;
 }
 
@@ -231,9 +264,15 @@ p {
   padding: 40vh 0;
   text-align: center;
   text-transform: uppercase;
+  opacity: 0;
+  transition: 0.1s ease-in;
 }
 
 .panelTitleBanner:hover {
+  opacity: 1;
+}
+
+.panelTitleBanner:hover h3 {
   opacity: 1;
 }
 
@@ -241,16 +280,33 @@ p {
   width: 100vw;
   height: 100vh;
   position: relative;
+  transition: all 0.6s; 
+}
+
+.panelGradient {
+  pointer-events: none;
+  position:absolute;
+  width:100%;
+  height:100%;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 95%);
+}
+
+.subPanel {
+  height: 100%;
+  width: 100%;
   transition: all 0.6s;
   filter: grayscale(100%);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 95%), url('../assets/images/Panelimages/transatlantic.jpg');
-  background-size: cover;
+  background-size:cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: hidden;
+  
 }
 
 
-.panel::after {
+
+.panel::after, .subPanel::after {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -260,12 +316,15 @@ p {
   transition: all 0.6s ease-in-out;
 }
 
-.panel:hover {
-  width: 200%;
-  filter: grayscale(0%);
+.panel:hover{
+  width: 300%;
 }
 
-.panel:hover::after {
+.subPanel:hover{
+  filter: grayscale(0%); 
+}
+
+.subPanel:hover::after {
   background-color: var(--transparent-hover-light);
 }
 
@@ -321,6 +380,20 @@ p {
   display: none;
 }
 
+.clickBorder {
+  width: 20%;
+  margin: 10px auto;
+  text-align: center;
+  border: var(--primary-color-offwhite) solid;
+  transition: 0.6s;
+}
+
+.clickBorder:hover {
+  background-color: var(--primary-color-offwhite);
+  color: var(--transparent-hover-light);
+  cursor: pointer;
+}
+
 /* XL SCREENS */
 @media screen and (max-width: 1200px) {
 
@@ -349,21 +422,6 @@ p {
     padding-top: 20vh;
   }
 
-   .contactLink {
-    display: none;
-  }
-
-  .contactLinkSM {
-    display: block;
-    color: var(--primary-color-offwhite);
-  transition: 0.5s;
-  }
-
-  .contactLinkSM:hover {
-  color: var(--transparent-hover-light);
-  cursor: pointer;
-}
-
   .descImg {
     display: none;
   }
@@ -379,6 +437,11 @@ p {
 .project {
   display: flex;
 }
+
+.clickBorder {
+  width: 40%;
+}
+
 }
 
 /* S PHONES */
@@ -410,5 +473,6 @@ p {
 .quoted {
   font-size: 24px;
 }
+
 }
 </style>
