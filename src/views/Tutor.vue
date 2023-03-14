@@ -2,7 +2,7 @@
   <div class="tutor">
 
     <div class="tutorBackgroundContainer">
-      <img class="tutorImg" src="../assets/images/tutor.jpg">
+      <img class="tutorImg" src="../assets/images/NewTutorBackground.jpg">
     </div>
 
     <div class="lessonsFlex">
@@ -143,15 +143,17 @@ export default {
   display: flex;
   flex: column;
   justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
   pointer-events: none;
+  padding-top: 80px;
 }
 
 .tutorImg {
   position: fixed;
-  width: 75vw;
+  width: 90vw;
   margin: auto;
 }
 

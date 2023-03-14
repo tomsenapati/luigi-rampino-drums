@@ -29,7 +29,7 @@
                 <p>The last decade has seen him take part in numerous projects as a drummer/ percussionist. He works as both a live and studio session player as well as being an active member of various original projects. </p>
               </div>
               
-              <img class="descImg" src="../assets/images/Luiedited.jpg" alt="">
+              <img class="descImg" src="../assets/images/NewPortfolio.jpg" alt="">
             </div>
 
             <p>Luigi has collaborated with a large variety of artists in the U.K. and across Europe, recently being busy touring and recording with artists such as Black Market Aftermath, Transatlantic Family Band, Ben Hemming and many more. Additionally he has been recording for other projects thanks to his vast fluency in many different styles. </p>

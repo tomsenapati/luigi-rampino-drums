@@ -14,10 +14,10 @@
         <h5>/lui.rampino</h5>
       </div>
       </a>
-      <a :href="'//'+ 'mailto:luirampinodrums@gmail.com'" target="_blank">
+      <a :href="'//'+ 'mailto:lrampinodrums@gmail.com'" target="_blank">
       <div class="iconCard">
         <i class="far fa-envelope iconModal"></i>
-        <h5>luirampinodrums@gmail.com</h5>
+        <h5>lrampinodrums@gmail.com</h5>
       </div>
       </a>
       </div>
